@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:habit_tracker/models/task_preset.dart';
 import 'package:habit_tracker/ui/task/task_with_name.dart';
@@ -9,20 +11,29 @@ class TaskGrid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GridView.builder(
-      physics: NeverScrollableScrollPhysics(),
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
-        crossAxisSpacing: 20,
-        mainAxisSpacing: 20,
-        childAspectRatio: 0.8,
-      ),
-      itemCount: tasks.length,
-      itemBuilder: (context, index) {
-        return TaskWithName(
-          task: tasks[index],
-        );
-      },
-    );
+    return LayoutBuilder(builder: (context, constraints) {
+      final crossAxisSpacing = constraints.maxWidth * 0.05;
+      final taskWidth = (constraints.maxWidth - crossAxisSpacing) / 2;
+      const aspectRatio = 0.6;
+      final taskHeight = taskWidth / aspectRatio;
+      final mainAxisSpacing =
+          max((constraints.maxHeight - taskHeight * 3) / 2.0, 0.1);
+      final taskLength = tasks.length;
+      return GridView.builder(
+        physics: NeverScrollableScrollPhysics(),
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          crossAxisSpacing: crossAxisSpacing,
+          mainAxisSpacing: mainAxisSpacing,
+          childAspectRatio: aspectRatio,
+        ),
+        itemCount: taskLength,
+        itemBuilder: (context, index) {
+          return TaskWithName(
+            task: tasks[index],
+          );
+        },
+      );
+    });
   }
 }
