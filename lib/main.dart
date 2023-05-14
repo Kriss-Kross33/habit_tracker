@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:habit_tracker/themes/app_theme.dart';
+import 'package:habit_tracker/ui/ui.dart';
 
 import 'constants/constants.dart';
-import 'ui/ui.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

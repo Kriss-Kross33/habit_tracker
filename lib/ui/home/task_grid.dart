@@ -14,7 +14,7 @@ class TaskGrid extends StatelessWidget {
     return LayoutBuilder(builder: (context, constraints) {
       final crossAxisSpacing = constraints.maxWidth * 0.05;
       final taskWidth = (constraints.maxWidth - crossAxisSpacing) / 2;
-      const aspectRatio = 0.6;
+      const aspectRatio = 0.82;
       final taskHeight = taskWidth / aspectRatio;
       final mainAxisSpacing =
           max((constraints.maxHeight - taskHeight * 3) / 2.0, 0.1);
