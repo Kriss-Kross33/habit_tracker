@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:habit_tracker/persistence/hive_data_store.dart';
 import 'package:habit_tracker/themes/app_theme.dart';
 import 'package:habit_tracker/ui/ui.dart';
 
@@ -7,6 +8,8 @@ import 'constants/constants.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await AppAssets.preloadSVGs();
+  final dataStore = HiveDataStore();
+  await dataStore.init();
   runApp(const MainApp());
 }
 
