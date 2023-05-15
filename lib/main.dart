@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:habit_tracker/models/models.dart';
 import 'package:habit_tracker/persistence/hive_data_store.dart';
 import 'package:habit_tracker/themes/app_theme.dart';
@@ -19,7 +20,12 @@ Future<void> main() async {
     Task.create(name: 'Drink Water', iconName: AppAssets.water),
     Task.create(name: 'Practice Instrument', iconName: AppAssets.guitar),
   ]);
-  runApp(const MainApp());
+  runApp(
+    ProviderScope(
+      overrides: [dataStoreProvider.overrideWithValue(dataStore)],
+      child: const MainApp(),
+    ),
+  );
 }
 
 class MainApp extends StatelessWidget {
