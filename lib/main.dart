@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:habit_tracker/models/models.dart';
 import 'package:habit_tracker/persistence/hive_data_store.dart';
 import 'package:habit_tracker/themes/app_theme.dart';
 import 'package:habit_tracker/ui/ui.dart';
@@ -10,6 +11,14 @@ Future<void> main() async {
   await AppAssets.preloadSVGs();
   final dataStore = HiveDataStore();
   await dataStore.init();
+  await dataStore.createDemoTask(tasks: [
+    Task.create(name: 'Wash Your Hands', iconName: AppAssets.washHands),
+    Task.create(name: 'Wear a Mask', iconName: AppAssets.mask),
+    Task.create(name: 'Brush Your Teeth', iconName: AppAssets.toothbrush),
+    Task.create(name: 'Floss Your Teeth', iconName: AppAssets.dentalFloss),
+    Task.create(name: 'Drink Water', iconName: AppAssets.water),
+    Task.create(name: 'Practice Instrument', iconName: AppAssets.guitar),
+  ]);
   runApp(const MainApp());
 }
 

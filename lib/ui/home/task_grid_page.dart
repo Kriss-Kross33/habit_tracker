@@ -10,7 +10,7 @@ class TaskGridPage extends StatelessWidget {
     required this.tasks,
   });
 
-  final List<TaskPreset> tasks;
+  final List<Task> tasks;
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +25,7 @@ class TaskGridPage extends StatelessWidget {
 
 class TaskGridContents extends StatelessWidget {
   const TaskGridContents({super.key, required this.tasks});
-  final List<TaskPreset> tasks;
+  final List<Task> tasks;
 
   @override
   Widget build(BuildContext context) {
